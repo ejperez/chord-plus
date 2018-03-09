@@ -1,0 +1,17 @@
+{
+  "name": "chord-plus",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bundle.js",
+  "directories": {
+    "src": "src"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "song"
+  ],
+  "author": "EJ Perez",
+  "license": "ISC"
+}
