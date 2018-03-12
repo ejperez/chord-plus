@@ -268,5 +268,6 @@ var ChordPlus = {
 };
 
 module.exports = {
-	parse: ChordPlus.parse
+	parse: ChordPlus.parse,
+	keys: ChordPlus.keys
 };

@@ -63,8 +63,8 @@ var tests = [
 			var result = chordPlus.parse( testString, 'D' );
 			var stringResult = result.body.map( function ( item ) { return item.value; } ).join( ' ' )
 			var expectedResult = 'D Em F#m G A B C#dim';
-			
-			assert( stringResult === expectedResult, 'Should be ' + expectedResult  );
+
+			assert( stringResult === expectedResult, 'Should be ' + expectedResult );
 		}
 	},
 	{
@@ -74,27 +74,35 @@ var tests = [
 			var result = chordPlus.parse( testString, 'Bb' );
 			var stringResult = result.body.map( function ( item ) { return item.value; } ).join( ' ' )
 			var expectedResult = 'Bb Cm Dm Eb F G Adim';
-			
-			assert( stringResult === expectedResult, 'Should be ' + expectedResult  );
+
+			assert( stringResult === expectedResult, 'Should be ' + expectedResult );
 		}
 	},
 	{
-		title: 'Timing',
+		title: 'Invalid Timing',
 		test: function () {
 			var testString = "title:\nartists:\nkey:C\ncomment:\nbpm:100\nmeter:4/4\nbody:\nC:1,2,4,8,16,1.,2.,4.,8.,16.,1_,2_,4_,8_,16_,1._,2._,4._,8._,16._,12";
-			var result = chordPlus.parse( testString, 'Bb' );
-			
-			console.log(result.body);
+
+			assert.throws( function () {
+				chordPlus.parse( testString )
+			}, /Invalid note duration/, 'Should throw invalid note duration' );
 		}
-	}	
+	},
+	{
+		title: 'Invalid Note',
+		test: function () {
+			var testString = "title:\nartists:\nkey:C\ncomment:\nbpm:100\nmeter:4/4\nbody:\nA B C D E F G x r H";
+
+			assert.throws( function () {
+				chordPlus.parse( testString )
+			}, /Invalid note name/, 'Should throw invalid note name' );
+		}
+	}
 ];
 
 for ( var key in tests ) {
 	var test = tests[key];
 
-	console.log( 'TEST ' + ( parseInt( key ) + 1 ) + ': ' + test.title );
-
 	test.test();
-
-	console.log( 'TEST ' + ( parseInt( key ) + 1 ) + ': Passed!' );
+	console.log( 'TEST ' + ( parseInt( key ) + 1 ) + ': ' + test.title + ' PASSED' );
 }
