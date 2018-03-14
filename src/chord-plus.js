@@ -176,46 +176,27 @@ var ChordPlus = {
 			value: null
 		};
 	},
-	parse: function ( sourceCode, newKey ) {
+	parse: function ( sourceCode, key, newKey ) {
 
-		var song = {
-			title: null,
-			artists: null,
-			key: 'C',
-			comment: null,
-			bpm: 100,
-			meter: '4/4',
-			body: []
-		};
-
-		var songBody = '';
-
-		// Split source code lines
-		var lines = sourceCode.trim().split( /\s*[\r\n]+\s*/g );
-
-		if ( lines.length === 0 ) {
-			return;
+		if ( typeof key === 'undefined' || key === '' ) {
+			key = 'C';
 		}
 
-		// Map to song object properties
-		var propertyCount = 7;
-
-		lines.forEach( function ( value, index ) {
-			if ( index < propertyCount ) {
-				var splittedValue = value.split( ':' );
-				song[splittedValue[0]] = splittedValue[1];
-			} else {
-				songBody += value + '\r\n';
-			}
-		} );
+		if ( ChordPlus.keys.indexOf( key ) === -1 ) {
+			throw new Error( 'Error: Invalid value for key --> ' + key );
+		}
 
 		// Parse song body
-		var indexOfKey = ChordPlus.sharpKeys.indexOf( song.key );
+		var indexOfKey = ChordPlus.sharpKeys.indexOf( key );
 		if ( indexOfKey === -1 ) {
-			indexOfKey = ChordPlus.flatKeys.indexOf( song.key );
+			indexOfKey = ChordPlus.flatKeys.indexOf( key );
 		}
 
 		if ( typeof newKey !== 'undefined' && newKey !== '' ) {
+
+			if ( ChordPlus.keys.indexOf( newKey ) === -1 ) {
+				throw new Error( 'Error: Invalid value for new key --> ' + key );
+			}
 
 			var indexOfNewKey = ChordPlus.sharpKeys.indexOf( newKey );
 			if ( indexOfNewKey === -1 ) {
@@ -229,19 +210,18 @@ var ChordPlus = {
 			ChordPlus.useFlats = ChordPlus.keysWithFlats.indexOf( newKey ) > -1;
 
 			if ( ChordPlus.steps !== 0 || ChordPlus.useFlats ) {
-				song.key = ChordPlus.transposeNote( song.key );
+				key = ChordPlus.transposeNote( key );
 			}
-
 		}
 
-		var songBodyItems = songBody.trim().split( ' ' );
-
-		song.body = [];
+		var songBodyItems = sourceCode.trim().split( ' ' );
+		var songBody = [];
 
 		songBodyItems.forEach( function ( value ) {
 
-			if ( value === 'v2' || value === '' )
+			if ( value === '' ){
 				return;
+			}				
 
 			// Check for line break
 			if ( ( value.match( /\s*[\r\n]+\s*/g ) || [] ).length ) {
@@ -249,21 +229,21 @@ var ChordPlus = {
 				var values = value.trim().split( /\s*[\r\n]+\s*/g );
 
 				values.forEach( function ( value, index ) {
-					song.body.push( ChordPlus.getItemType( value ) );
+					songBody.push( ChordPlus.getItemType( value ) );
 
 					if ( index < ( values.length - 1 ) ) {
-						song.body.push( { type: 'break' } );
+						songBody.push( { type: 'break' } );
 					}
 				} );
 
 			} else {
 
-				song.body.push( ChordPlus.getItemType( value ) );
+				songBody.push( ChordPlus.getItemType( value ) );
 			}
 
 		} );
 
-		return song;
+		return songBody;
 	}
 };
 
