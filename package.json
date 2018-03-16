@@ -2,16 +2,30 @@
   "name": "chord-plus",
   "version": "1.0.0",
   "description": "",
-  "main": "bundle.js",
+  "main": "webpack.config.js",
   "directories": {
-    "src": "src"
+    "test": "tests"
   },
   "scripts": {
-    "test": "test"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "song"
-  ],
-  "author": "EJ Perez",
-  "license": "ISC"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ejperez/chord-plus.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ejperez/chord-plus/issues"
+  },
+  "homepage": "https://github.com/ejperez/chord-plus#readme",
+  "devDependencies": {
+    "css-loader": "^0.28.10",
+    "ejs-compiled-loader": "^1.1.0",
+    "node-sass": "^4.7.2",
+    "sass-loader": "^6.0.7",
+    "style-loader": "^0.20.3",
+    "url-loader": "^1.0.1",
+    "webpack": "^4.1.1"
+  }
 }

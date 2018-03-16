@@ -1,4 +1,4 @@
-var chordPlus = require( '../src/chord-plus.js' );
+var chordPlus = require( '../src/chord-plus-parser.js' );
 var assert = require( 'assert' );
 
 var tests = [

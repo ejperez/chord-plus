@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<h1>Chord Plus Sample</h1>
+	<p>Source Code: <span id="source"></span></p>
+	<p>Output: <span id="output"></span></p>
+	<script src="dist/chord-plus.min.js"></script>
+	<script>
+		var sourceCode = 'C Dm Em F G Am Bdim';
+		
+		document.getElementById( 'source' ).innerHTML = sourceCode;
+		document.getElementById( 'output' ).innerHTML = ChordPlus.getHTML( sourceCode );
+	</script>
+</body>
+</html>
