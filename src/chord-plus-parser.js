@@ -89,7 +89,7 @@ var ChordPlusParser = {
 
 				return {
 					type: 'repeat',
-					value: firstCharacter,
+					value: firstThreeCharacters,
 					times: parseInt( times ) === 2 ? null : times
 				};
 			}
@@ -178,6 +178,9 @@ var ChordPlusParser = {
 	},
 	parse: function ( sourceCode, key, newKey ) {
 
+		ChordPlusParser.steps = 0;
+		ChordPlusParser.useFlats = false;
+
 		if ( typeof key === 'undefined' || key === '' || !key ) {
 			key = 'C';
 		}
@@ -219,9 +222,9 @@ var ChordPlusParser = {
 
 		songBodyItems.forEach( function ( value ) {
 
-			if ( value === '' ){
+			if ( value === '' ) {
 				return;
-			}				
+			}
 
 			// Check for line break
 			if ( ( value.match( /\s*[\r\n]+\s*/g ) || [] ).length ) {

@@ -6,11 +6,53 @@
 
 var ChordPlusFormatter = {
 	dot: '<span class="dot">.</span>',
-	format: function ( songBody ) {				
+	format: function ( songBody ) {
+
 		require( '../src/sass/styles.scss' );
 		var chordsTemplate = require( '../src/templates/chords.ejs' );
 
-		return chordsTemplate( { songBody : songBody } );
+		for ( var i = 0; i < songBody.length; i++ ) {
+			if ( songBody[i].type === 'symbol' || songBody[i].type === 'repeat' ) {
+				if ( !ChordPlusFormatter.symbolsLookup.hasOwnProperty( songBody[i].value ) )
+					continue;
+
+				songBody[i].value = ChordPlusFormatter.symbolsLookup[songBody[i].value];
+			} else if ( songBody[i].type === 'chord' ) {
+				if ( !songBody[i].timing )
+					continue;
+
+				var timings = songBody[i].timing.join( ',' );
+
+				if ( ChordPlusFormatter.beamsLookup.hasOwnProperty( timings ) ) {
+					songBody[i].timing = ChordPlusFormatter.beamsLookup[timings];
+				} else {
+					var newTimings = [];
+
+					songBody[i].timing.forEach( function ( item ) {
+						if ( ChordPlusFormatter.notesDurationLookup.hasOwnProperty( item ) ) {
+							newTimings.push( ChordPlusFormatter.notesDurationLookup[item] );
+						}
+					} );
+
+					songBody[i].timing = newTimings.join( '' );
+				}
+			} else if ( songBody[i].type === 'rest' ) {
+				if ( !songBody[i].timing )
+					continue;
+
+				var newTimings = [];
+
+				songBody[i].timing.forEach( function ( item ) {
+					if ( ChordPlusFormatter.restsDurationLookup.hasOwnProperty( item ) ) {
+						newTimings.push( ChordPlusFormatter.restsDurationLookup[item] );
+					}
+				} );
+
+				songBody[i].timing = newTimings.join( '' );
+			}
+		}
+
+		return chordsTemplate( { songBody: songBody } );
 	}
 }
 

@@ -60,7 +60,7 @@
             }
             .timing {
                 font-family: musisync, serif;
-                font-size: 30px;
+                font-size: 25px;
                 line-height: 0;
                 .dot {
                     margin-left: -2px;
@@ -75,6 +75,7 @@
     }
     &__item--section {
         display: block;
-        margin-bottom: -15px;
+		margin-bottom: -50px;
+		margin-top: 20px;
     }
 }

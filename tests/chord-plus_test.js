@@ -98,7 +98,25 @@ var tests = [
 				chordPlus.parse( testString, 'C', 'D$' )
 			}, /Invalid value for new key/, 'Should throw invalid value for new key' );
 		}
-	}
+	},
+	{
+		title: 'Line Breaks',
+		test: function () {						
+			var testString = "[Intro] C\r\nDm:16,16,16 Em";
+			var result = chordPlus.parse( testString );
+
+			assert( result[2].type === 'break', 'Third item should be a break' );
+		}
+	},
+	{
+		title: 'Line Breaks',
+		test: function () {						
+			var testString = "[Intro] [[: C:4,4,4,4 Dm | Em F | G Am Bdim :]]3\r\n[[ D:16,16,16 | r:1,2,4,8";
+			var result = chordPlus.parse( testString );
+
+			console.log( result );
+		}
+	}	
 ];
 
 for ( var key in tests ) {
