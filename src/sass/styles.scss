@@ -14,11 +14,11 @@
 }
 
 .chord-plus-code {
-	font-family: 'Inconsolata', monospace;
+    font-family: 'Inconsolata', monospace;
 }
 
 .chord-plus {
-	font-family: 'Inconsolata', monospace;
+    font-family: 'Inconsolata', monospace;
     margin-top: 20px;
     &__section {
         font-weight: bold;
@@ -29,6 +29,7 @@
         &-container {
             display: table;
             min-height: 40px;
+            margin-top: -8px;
         }
         &-content {
             display: table-cell;
@@ -66,7 +67,7 @@
                 }
             }
             .timing--rest {
-				font-size: 25px;
+                font-size: 25px;
                 .dot {
                     margin-left: -6px;
                 }
@@ -75,7 +76,7 @@
     }
     &__item--section {
         display: block;
-		margin-bottom: -50px;
-		margin-top: 20px;
+        margin-bottom: -30px;
+        margin-top: 10px;
     }
 }
