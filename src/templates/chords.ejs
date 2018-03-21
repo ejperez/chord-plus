@@ -2,6 +2,10 @@
 	<%
 	for( var i=0; i < songBody.length; i++ ) {
 		var item = songBody[i];
+
+		if ( !item.type ){
+			continue;
+		}
 	%>	
 
 		<% if( item.type === 'break' ) { %>

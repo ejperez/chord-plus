@@ -109,14 +109,14 @@ var tests = [
 		}
 	},
 	{
-		title: 'Line Breaks',
+		title: 'Key Change',
 		test: function () {						
-			var testString = "[Intro] [[: C:4,4,4,4 Dm | Em F | G Am Bdim :]]3\r\n[[ D:16,16,16 | r:1,2,4,8";
+			var testString = "[Intro] C D Em | [[F F G Am";
 			var result = chordPlus.parse( testString );
 
-			console.log( result );
+			assert( result[5].type === null, 'Sixth item should be null' );
 		}
-	}	
+	}
 ];
 
 for ( var key in tests ) {
