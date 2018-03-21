@@ -26,7 +26,6 @@
     }
     &__item {
         display: inline-block;
-        margin-right: 10px;
         &-container {
             display: table;
             min-height: 40px;
@@ -60,13 +59,14 @@
             }
             .timing {
                 font-family: musisync, serif;
-                font-size: 25px;
+                font-size: 20px;
                 line-height: 0;
                 .dot {
                     margin-left: -2px;
                 }
             }
             .timing--rest {
+				font-size: 25px;
                 .dot {
                     margin-left: -6px;
                 }
