@@ -22,10 +22,10 @@
 
 					<% if( item.type === 'chord' ) { %>
 						<div class="chord-plus__item-content chord">
-							<div class="chord-value"><%= item.value %></div>
+							<div class="chord-value"><%- item.value ? item.value : '&nbsp;' %></div>
 
 							<% if( item.timing ) { %>
-								<div class="timing"><%= item.timing %></div>
+								<div class="timing"><%- item.timing %></div>
 							<% } %>
 
 						</div>
@@ -49,7 +49,7 @@
 
 					<% if( item.type === 'rest' ) { %>
 						<span class="chord-plus__item-content chord">
-							<div class="timing timing--rest"><%= item.timing %></div>
+							<div class="timing timing--rest"><%- item.timing %></div>
 						</span>
 					<% } %>
 

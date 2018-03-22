@@ -15,7 +15,7 @@ var ChordPlusParser = {
 	noteNames: ['C', 'D', 'E', 'F', 'G', 'A', 'B'],
 	keysWithFlats: ['F', 'Bb', 'Eb', 'Ab', 'Db', 'Gb'],
 	symbolsLookup: ['[[:', '[[', '[[_', ':]]', '|'],
-	notesDurationLookup: ['1', '2', '4', '8', '16', '1.', '2.', '4.', '8.', '16.', '1_', '2_', '4_', '8_', '16_', '1._', '2._', '4._', '8._', '16._'],
+	notesDurationLookup: ['1', '2', '4', '8', '16', '1.', '2.', '4.', '8.', '16.', '1_', '2_', '4_', '8_', '16_', '1._', '2._', '4._', '8._', '16._', '8_3', '4_3'],
 	useFlats: false,
 	steps: 0,
 	transposeNote: function ( note ) {
@@ -117,7 +117,7 @@ var ChordPlusParser = {
 
 			// Update useflats
 			var newKeyInLine = value.substr( 2 );
-			useFlats = ChordPlusParser.keysWithFlats.indexOf( newKeyInLine ) > -1;
+			ChordPlusParser.useFlats = ChordPlusParser.keysWithFlats.indexOf( newKeyInLine ) > -1;
 
 		} else if ( firstCharacter === '(' ) {
 

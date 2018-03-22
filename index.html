@@ -6,6 +6,26 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>ChordPlus</title>
+	<style>
+		body {
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		}
+
+		table td {
+			vertical-align: top;
+		}
+
+		.chord-plus-code {
+			line-height: 35px;
+			background-color: #eee;
+			padding: 5px;
+		}
+
+		.with-bar {
+			line-height: 50px;
+		}
+	</style>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/darcula.min.css">
 </head>
 
 <body>
@@ -35,51 +55,174 @@
 	<table border="1">
 		<thead>
 			<tr>
-				<td>Element</td>
+				<td width="200">Element</td>
 				<td>Source Code</td>
 				<td>Result</td>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
-				<td>Chords</td>
+				<td>Chords
+					<p>
+						<em>Chords are displayed as is.</em>
+					</p>
+				</td>
 				<td>
 					<pre class="js-parse chord-plus-code">
-C
-D Em
+A B C D E F G
+Am7 Bdim7 C#m9b13 DM9 E11 Fm6 G7b5
 					</pre>
 				</td>
 			</tr>
 			<tr>
-				<td>Timing</td>
+				<td>Timing
+					<p>
+						<em>You can indicate simple timings to complicated ones with dotted notes and ties.</em>
+					</p>
+				</td>
 				<td>
 					<pre class="js-parse chord-plus-code">
 C:1 C:2 C:4 C:8 C:16
+C:1. C:2. C:4. C:8. C:16.
+C:1_ C:2_ C:4_ C:8_ C:16_
+C:1._ C:2._ C:4._ C:8._ C:16._
+C:16,16,8
+C:16,16
+C:16,8.
+C:8_3
+C:8,8,8,8
+C:8,16,16
+C:8,8
+C:8.,16
+C:4_3
+C:16,16,16,16
+C:8,8,8
+C:16,16,16
+C:16,8,16
 					</pre>
 				</td>
 			</tr>
 			<tr>
-				<td>Rests</td>
+				<td>Rests
+					<p>
+						<em>The timing symbols can also be used to indicate rests.</em>
+					</p>
+				</td>
+				<td>
+					<pre class="js-parse chord-plus-code">
+r:1 r:2 r:4 r:8 r:16
+r:1. r:2. r:4. r:8. r:16.
+r:1_ r:2_ r:4_ r:8_ r:16_
+r:1._ r:2._ r:4._ r:8._ r:16._
+					</pre>
+				</td>
 			</tr>
 			<tr>
-				<td>Repetitions</td>
+				<td>Repetitions
+					<p>
+						<em>Use repetition symbols to save space.</em>
+					</p>
+				</td>
+				<td>
+					<pre class="js-parse chord-plus-code with-bar">
+[[: C | F | G | C :]]
+[[: C | F | G | C :]]4
+					</pre>
+				</td>
 			</tr>
 			<tr>
-				<td>Comments</td>
+				<td>Comments
+					<p>
+						<em>Add comments to make you chord sheet more informative.</em>
+					</p>
+				</td>
+				<td>
+					<pre class="js-parse chord-plus-code with-bar">
+'guitar [[: C | F | G | C :]]
+'synth-comes-in C | F | G | C
+'whole-band-comes-in C | F | G | C
+					</pre>
+				</td>
 			</tr>
 			<tr>
-				<td>Sections</td>
+				<td>Sections
+					<p>
+						<em>Add sections of the song to better see its structure.</em>
+					</p>
+				</td>
+				<td>
+					<pre class="js-parse chord-plus-code with-bar">
+[Intro] [[: C | F | G | C :]]
+[Chorus] 'whole-band F G | C | F G | C
+					</pre>
+				</td>
 			</tr>
 			<tr>
-				<td>Labels</td>
+				<td>Labels
+					<p>
+						<em>Labels are used in pair with repetition symbols. It can also be used to add jumps to different parts of the song.</em>
+					</p>
+				</td>
+				<td>
+					<pre class="js-parse chord-plus-code with-bar">
+[Intro] [[: "A. C | F | G | "1. C "2. Am C :]]
+[[: C | F | G | C F | G C "To-A :]]
+					</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>Double Bar Line</td>
+				<td>
+					<pre class="js-parse chord-plus-code with-bar">
+[Intro] [[: C D [[ E:4,4,4 | G#m:4,4,4 :]]
+					</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>Bar Tie</td>
+				<td>
+					<pre class="js-parse chord-plus-code with-bar">
+[Intro] C:4,4,4,4 [[_ x:4 C:4,4,4
+					</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>Change Of Key
+					<p>
+						<em>Though invisible, this will help ChordPlus in transposing the chords.</em>
+					</p>
+				</td>
+				<td>
+					<pre class="js-parse chord-plus-code with-bar">
+C D | Em F | G C
+[[ 'higher [[Eb Eb F | Gb G | A B
+					</pre>
+				</td>
 			</tr>
 		</tbody>
 	</table>
 
+	<h2>How To Use The Code</h2>
+	<p>It's easy. Just import the ChordPlus JS file, feed the source code to getHTML function then get the result.</p>
+	<pre>
+		<code class="javascript">
+&lt;script src=&quot;dist/chord-plus.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+	var sourceCode = '[Intro] [[: C:4,4,4,4 Dm | Em F | G Am Bdim :]]3';
+	var result = ChordPlus.getHTML( sourceCode );
+
+	// To enable tranposition, indicate the source key and the target key
+	var resultTransposed = ChordPlus.getHTML( sourceCode, 'C', 'D' );
+&lt;/script&gt;
+		</code>		
+	</pre>
+
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
 	 crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
 	<script src="dist/chord-plus.min.js"></script>
-	<script>
+	<script>		
 		var sourceCode = '[Intro] [[: C:4,4,4,4 Dm | Em F | G Am Bdim :]]3\r\n[[ D:16,16,16 | r:1,2,4,8\r\n[Verse] [[F F G | Am';
 
 		$( '#source' ).html( sourceCode );
