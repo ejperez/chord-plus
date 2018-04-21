@@ -46,7 +46,7 @@ var tests = [
 		test: function () {
 			var testString = "C Dm Em F G A Bdim";
 			var result = chordPlus.parse( testString, 'C', 'D' );
-			var stringResult = result.map( function ( item ) { return item.value; } ).join( ' ' )
+			var stringResult = result.map( function ( item ) { return item.value; } ).join( ' ' );
 			var expectedResult = 'D Em F#m G A B C#dim';
 
 			assert( stringResult === expectedResult, 'Should be ' + expectedResult );
@@ -115,6 +115,14 @@ var tests = [
 			var result = chordPlus.parse( testString );
 
 			assert( result[5].type === null, 'Sixth item should be null' );
+		}
+	},
+	{
+		title: '% Sign',
+		test: function () {						
+			var testString = "[Intro] C | % | % | %";
+			var result = chordPlus.parse( testString );
+			assert( result[3].value === '%', 'Fourth item should be %' );
 		}
 	}
 ];
