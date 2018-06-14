@@ -116,6 +116,14 @@ var tests = [
 
 			assert( result[5].type === null, 'Sixth item should be null' );
 		}
+	},
+	{
+		title: 'Key of C uses flat chords',
+		test: function () {
+			var testString = "A# Bb";
+			var result = chordPlus.parse( testString );
+			assert( result[0].value === 'Bb', 'First chord should be Bb' );
+		}
 	}
 ];
 

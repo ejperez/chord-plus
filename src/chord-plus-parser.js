@@ -13,7 +13,7 @@ var ChordPlusParser = {
 	flatKeys: ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'],
 	sharpKeys: ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'],
 	noteNames: ['C', 'D', 'E', 'F', 'G', 'A', 'B'],
-	keysWithFlats: ['F', 'Bb', 'Eb', 'Ab', 'Db', 'Gb'],
+	keysWithFlats: ['C', 'F', 'Bb', 'Eb', 'Ab', 'Db', 'Gb'],
 	symbolsLookup: ['[[:', '[[', '[[_', ':]]', '|'],
 	notesDurationLookup: ['1', '2', '4', '8', '16', '1.', '2.', '4.', '8.', '16.', '1_', '2_', '4_', '8_', '16_', '1._', '2._', '4._', '8._', '16._', '8_3', '4_3'],
 	useFlats: false,
@@ -183,6 +183,7 @@ var ChordPlusParser = {
 
 		if ( typeof key === 'undefined' || key === '' || !key ) {
 			key = 'C';
+			ChordPlusParser.useFlats = true;			
 		}
 
 		if ( ChordPlusParser.keys.indexOf( key ) === -1 ) {
