@@ -46,7 +46,7 @@ var tests = [
 		test: function () {
 			var testString = "C Dm Em F G A Bdim";
 			var result = chordPlus.parse( testString, 'C', 'D' );
-			var stringResult = result.map( function ( item ) { return item.value; } ).join( ' ' )
+			var stringResult = result.map( function ( item ) { return item.value; } ).join( ' ' );
 			var expectedResult = 'D Em F#m G A B C#dim';
 
 			assert( stringResult === expectedResult, 'Should be ' + expectedResult );
@@ -65,7 +65,7 @@ var tests = [
 	},
 	{
 		title: 'Invalid Timing',
-		test: function () {			
+		test: function () {
 			assert.throws( function () {
 				var testString = "C:1,2,4,8,16,1.,2.,4.,8.,16.,1_,2_,4_,8_,16_,1._,2._,4._,8._,16._,12";
 				chordPlus.parse( testString )
@@ -74,7 +74,7 @@ var tests = [
 	},
 	{
 		title: 'Invalid Note',
-		test: function () {			
+		test: function () {
 			assert.throws( function () {
 				var testString = "A B C D E F G x r H";
 				chordPlus.parse( testString )
@@ -83,7 +83,7 @@ var tests = [
 	},
 	{
 		title: 'Invalid Key',
-		test: function () {			
+		test: function () {
 			assert.throws( function () {
 				var testString = "C | F G | C";
 				chordPlus.parse( testString, 'C$' )
@@ -92,7 +92,7 @@ var tests = [
 	},
 	{
 		title: 'Invalid New Key',
-		test: function () {			
+		test: function () {
 			assert.throws( function () {
 				var testString = "C | F G | C";
 				chordPlus.parse( testString, 'C', 'D$' )
@@ -101,7 +101,7 @@ var tests = [
 	},
 	{
 		title: 'Line Breaks',
-		test: function () {						
+		test: function () {
 			var testString = "[Intro] C\r\nDm:16,16,16 Em";
 			var result = chordPlus.parse( testString );
 
@@ -110,7 +110,7 @@ var tests = [
 	},
 	{
 		title: 'Key Change',
-		test: function () {						
+		test: function () {
 			var testString = "[Intro] C D Em | [[F F G Am";
 			var result = chordPlus.parse( testString );
 
@@ -123,6 +123,14 @@ var tests = [
 			var testString = "A# Bb";
 			var result = chordPlus.parse( testString );
 			assert( result[0].value === 'Bb', 'First chord should be Bb' );
+		}
+	},
+	{
+		title: '% Sign',
+		test: function () {
+			var testString = "[Intro] C | % | % | %";
+			var result = chordPlus.parse( testString );
+			assert( result[3].value === '%', 'Fourth item should be %' );
 		}
 	}
 ];
