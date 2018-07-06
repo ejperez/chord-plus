@@ -132,7 +132,15 @@ var tests = [
 			var result = chordPlus.parse( testString );
 			assert( result[3].value === '%', 'Fourth item should be %' );
 		}
-	}
+	},
+	{
+		title: 'Key of C uses flat chords',
+		test: function () {
+			var testString = "A# Bb";
+			var result = chordPlus.parse( testString );
+			console.log(result);
+		}
+	},
 ];
 
 for ( var key in tests ) {

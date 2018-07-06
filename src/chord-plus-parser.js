@@ -79,7 +79,7 @@ var ChordPlusParser = {
 
 			return {
 				type: 'section',
-				value: value.substr(1, value.length - 2).replaceAll('-', ' ')
+				value: value.substr(1, value.length - 2).replaceAll('_', ' ')
 			};
 
 		} else if (ChordPlusParser.symbolsLookup.indexOf(firstThreeCharacters) !== -1) {
@@ -103,14 +103,14 @@ var ChordPlusParser = {
 
 			return {
 				type: 'label',
-				value: value.replaceAll('"', '').replaceAll('-', ' ')
+				value: value.replaceAll('"', '').replaceAll('_', ' ')
 			};
 
 		} else if (firstCharacter === '\'') {
 
 			return {
 				type: 'comment',
-				value: value.replaceAll('\'', '').replaceAll('-', ' ')
+				value: value.replaceAll('\'', '').replaceAll('_', ' ')
 			};
 
 		} else if (value.substr(0, 2) === '[[') {
