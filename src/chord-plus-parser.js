@@ -64,7 +64,13 @@ var ChordPlusParser = {
 		// Transpose over key note
 		if ( chord.indexOf( '/' ) > -1 ) {
 			var overKey = chord.substr( chord.indexOf( '/' ) + 1 );
-			chord = chord.substr( 0, chord.indexOf( '/' ) ) + '/' + ChordPlusParser.transposeNote( overKey );
+			
+			// Check if note is a valid key
+			if( ChordPlusParser.keys.indexOf( overKey ) === -1 ) {
+				chord = chord.substr( 0, chord.indexOf( '/' ) ) + '/' + overKey;
+			} else {
+				chord = chord.substr( 0, chord.indexOf( '/' ) ) + '/' + ChordPlusParser.transposeNote( overKey );
+			}					
 		}
 
 		return chord;
