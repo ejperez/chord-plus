@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="style.css" rel="stylesheet" />
+    <title>ChordPlus Demo</title>
+  </head>
+
+  <body>
+    <main>
+      <h1>ChordPlus</h1>
+
+      <p>Transform simple chord notation into a formatted chord sheet.</p>
+
+      <section class="demo">
+        <div>
+          <textarea id="input" rows="8" spellcheck="false"></textarea>
+          <div>
+            <label for="key"
+              >Key:
+              <select id="key"></select>
+            </label>
+          </div>
+        </div>
+        <div>
+          <div id="output"></div>
+          <div>
+            <label for="transpose_to"
+              >Transpose to:
+              <select id="transpose_to"></select>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Syntax Guide</h2>
+        <p>Click one of these buttons to see the description and samples.</p>
+        <div id="guides"></div>
+      </section>
+    </main>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
