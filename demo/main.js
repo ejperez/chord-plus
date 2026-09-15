@@ -83,14 +83,17 @@ r:1._ r:2._ r:4._ r:8._ r:16._`,
     outputField = document.getElementById("output"),
     keyField = document.getElementById("key"),
     transposeToField = document.getElementById("transpose_to"),
-    guidesContainer = document.getElementById("guides");
+    guidesContainer = document.getElementById("guides"),
+    guidesDescription = document.getElementById("guides_description");
 
   guidesContainer.innerHTML = guides
     .map(
       (guide, index) =>
-        `<button value="${index}" type="button">${guide.label}</button>`,
+        `<button class="guide_button" value="${index}" type="button">${guide.label}</button>`,
     )
     .join("");
+
+  const guideButtons = document.querySelectorAll(".guide_button");
 
   [keyField, transposeToField].forEach((input) => {
     input.innerHTML = Parser.keys
@@ -116,14 +119,21 @@ r:1._ r:2._ r:4._ r:8._ r:16._`,
 
   // Animate initial demo input
   let counter = 1;
-  let interval = setInterval(() => {
-    inputField.value = demoInitialInput.substring(0, counter++);
-    inputField.dispatchEvent(new Event("keyup"));
+  let interval = null;
 
-    if (counter > demoInitialInput.length) {
-      clearInterval(interval);
-    }
-  }, 20);
+  const animateInput = (input) => {
+    counter = 1;
+    interval = setInterval(() => {
+      inputField.value = input.substring(0, counter++);
+      inputField.dispatchEvent(new Event("keyup"));
+
+      if (counter > input.length) {
+        clearInterval(interval);
+      }
+    }, 20);
+  };
+
+  animateInput(demoInitialInput);
 
   // Handle input events
   inputField.addEventListener("keyup", () => {
@@ -141,8 +151,13 @@ r:1._ r:2._ r:4._ r:8._ r:16._`,
       if (!guides[event.target.value]) return;
 
       clearInterval(interval);
-      inputField.value = guides[event.target.value].input;
+      animateInput(guides[event.target.value].input);
       inputField.dispatchEvent(new Event("keyup"));
+
+      guideButtons.forEach((button) => button.classList.remove("active"));
+      button.classList.add("active");
+
+      guidesDescription.innerHTML = guides[event.target.value].description;
     });
   });
 })();

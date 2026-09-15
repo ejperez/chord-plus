@@ -1,5 +1,6 @@
 main {
   max-width: 1920px;
+  margin: 0 auto;
 }
 
 h1,
@@ -8,10 +9,23 @@ p {
   text-align: center;
 }
 
+label,
+select,
+p {
+  font-size: 18px;
+}
+
 .demo {
   display: flex;
   width: 100%;
+  flex-direction: column;
   gap: 10px;
+}
+
+@media (min-width: 768px) {
+  .demo {
+    flex-direction: row;
+  }
 }
 
 .demo > div {
@@ -40,22 +54,28 @@ p {
 #guides {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 10px;
 }
 
-#guides button {
-  padding: 20px;
+.guide_button {
+  padding: 10px 40px;
   font-size: 20px;
   background-color: white;
   border: none;
   outline: solid 2px black;
 }
 
-#guides button:hover {
+.guide_button:hover {
   cursor: pointer;
 }
 
 #output {
   max-height: 430px;
-  overflow-y: scroll;
+  overflow-y: auto;
+}
+
+.guide_button.active {
+  background-color: black;
+  color: white;
 }
