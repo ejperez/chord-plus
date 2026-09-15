@@ -5,4 +5,8 @@ import { defineConfig } from "vite";
 export default defineConfig({
   root: "demo",
   base: "/chord-plus/",
+  build: {
+    outDir: "../demo/dist",
+    emptyOutDir: true,
+  },
 });
