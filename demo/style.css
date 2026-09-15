@@ -1,0 +1,81 @@
+main {
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+h1,
+h2,
+p {
+  text-align: center;
+}
+
+label,
+select,
+p {
+  font-size: 18px;
+}
+
+.demo {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@media (min-width: 768px) {
+  .demo {
+    flex-direction: row;
+  }
+}
+
+.demo > div {
+  flex: 1;
+  padding: 10px;
+  border: solid 2px black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.demo textarea {
+  width: 100%;
+  font-size: 20px;
+  border: none;
+  resize: none;
+  line-height: 50px;
+}
+
+.demo textarea:focus {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+#guides {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.guide_button {
+  padding: 10px 40px;
+  font-size: 20px;
+  background-color: white;
+  border: none;
+  outline: solid 2px black;
+}
+
+.guide_button:hover {
+  cursor: pointer;
+}
+
+#output {
+  max-height: 430px;
+  overflow-y: auto;
+}
+
+.guide_button.active {
+  background-color: black;
+  color: white;
+}
