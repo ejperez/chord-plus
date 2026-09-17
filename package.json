@@ -11,13 +11,14 @@
   "exports": {
     ".": {
       "import": "./dist/chord-plus.es.js",
-      "require": "./dist/chord-plus.umd.js"
+      "require": "./dist/chord-plus.umd.js",
+      "types": "./dist/chord-plus.d.ts"
     },
     "./css": "./dist/chord-plus.css"
   },
   "scripts": {
     "dev": "vite --config vite.demo.config.js",
-    "build": "vite build",
+    "build": "vite build && cp lib/main.d.ts dist/chord-plus.d.ts",
     "build:demo": "vite build --config vite.demo.config.js",
     "deploy:demo": "npm run build:demo && gh-pages -d demo/dist",
     "preview": "vite preview",

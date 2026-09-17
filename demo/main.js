@@ -1,4 +1,4 @@
-import { Parser, Formatter, Renderer } from "../lib/main";
+import ChordPlus from "../lib/main";
 
 (() => {
   const demoInitialInput = `[Intro] [[: C:4,4,4,4 Dm | Em F | G Am Bdim :]]3
@@ -96,22 +96,18 @@ r:1._ r:2._ r:4._ r:8._ r:16._`,
   const guideButtons = document.querySelectorAll(".guide_button");
 
   [keyField, transposeToField].forEach((input) => {
-    input.innerHTML = Parser.keys
+    input.innerHTML = ChordPlus.keys
       .map((key) => `<option value="${key}">${key}</option>`)
       .join("");
   });
 
   const render = (input) => {
     try {
-      const parsedSong = Parser.parse(
+      outputField.innerHTML = ChordPlus.generateChordSheet(
         input,
         keyField.value,
         transposeToField.value,
       );
-      const formattedSong = Formatter.format(parsedSong);
-      const renderedHtml = Renderer.render(formattedSong);
-
-      outputField.innerHTML = renderedHtml;
     } catch (e) {
       console.info(e);
     }
