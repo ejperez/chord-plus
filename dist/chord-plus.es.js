@@ -335,12 +335,9 @@ var n = {
         </div>
     `;
 	}
-}, r = {
-	generateChordSheet: (r, i, a) => {
-		let o = e.parse(r, i, a), s = t.format(o);
-		return n.render(s);
-	},
-	keys: e.keys
-};
+}, r = (r, i, a) => {
+	let o = e.parse(r, i, a), s = t.format(o);
+	return n.render(s);
+}, i = e.keys;
 //#endregion
-export { r as default };
+export { r as generateChordSheet, i as keys };

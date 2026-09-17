@@ -1,4 +1,4 @@
-import ChordPlus from "../lib/main";
+import { generateChordSheet, keys } from "../lib/main";
 
 (() => {
   const demoInitialInput = `[Intro] [[: C:4,4,4,4 Dm | Em F | G Am Bdim :]]3
@@ -96,14 +96,14 @@ r:1._ r:2._ r:4._ r:8._ r:16._`,
   const guideButtons = document.querySelectorAll(".guide_button");
 
   [keyField, transposeToField].forEach((input) => {
-    input.innerHTML = ChordPlus.keys
+    input.innerHTML = keys
       .map((key) => `<option value="${key}">${key}</option>`)
       .join("");
   });
 
   const render = (input) => {
     try {
-      outputField.innerHTML = ChordPlus.generateChordSheet(
+      outputField.innerHTML = generateChordSheet(
         input,
         keyField.value,
         transposeToField.value,
