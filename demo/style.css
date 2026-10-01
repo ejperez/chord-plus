@@ -1,6 +1,8 @@
-main {
-  max-width: 1920px;
+body {
+  font-family: Arial, Helvetica, sans-serif;
   margin: 0 auto;
+  padding: 0 12px 0 12px;
+  max-width: 1920px;
 }
 
 h1,
@@ -42,7 +44,7 @@ p {
   font-size: 20px;
   border: none;
   resize: none;
-  line-height: 50px;
+  line-height: 40px;
 }
 
 .demo textarea:focus {
@@ -53,29 +55,20 @@ p {
 
 #guides {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.guide_button {
-  padding: 10px 40px;
+.guide-input {
+  overflow: auto;
+}
+
+#guides pre {
   font-size: 20px;
-  background-color: white;
-  border: none;
-  outline: solid 2px black;
-}
-
-.guide_button:hover {
-  cursor: pointer;
+  line-height: 40px;
 }
 
 #output {
-  max-height: 430px;
+  max-height: 800px;
   overflow-y: auto;
-}
-
-.guide_button.active {
-  background-color: black;
-  color: white;
 }
