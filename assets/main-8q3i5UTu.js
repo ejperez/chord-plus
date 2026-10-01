@@ -1,0 +1,3 @@
+import{n as e,t}from"./main-BCjEiiW6.js";(()=>{let n=document.getElementById(`input`),r=document.getElementById(`output`),i=document.getElementById(`key`),a=document.getElementById(`transpose_to`);[i,a].forEach(t=>{t.innerHTML=e.map(e=>`<option value="${e}">${e}</option>`).join(``)});let o=e=>{try{r.innerHTML=t(e,i.value,a.value)}catch(e){console.info(e)}},s=1,c=null;(e=>{s=1,c=setInterval(()=>{n.value=e.substring(0,s++),n.dispatchEvent(new Event(`keyup`)),s>e.length&&clearInterval(c)},20)})(`[Intro] [[: C:4,4,4,4 Dm | Em F | G Am Bdim :]]3
+[[ D:16,16,16 | r:1,2,4,8
+[Verse] F G | Am G/B | C6/9`),n.addEventListener(`keyup`,()=>{o(n.value)}),[i,a].forEach(e=>{e.addEventListener(`change`,()=>{o(n.value)})})})();

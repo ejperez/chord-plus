@@ -39,6 +39,4 @@
                     </div>
                 </div>`:``).join(``)}
         </div>
-    `}},r=(r,i,a)=>{let o=e.parse(r,i,a),s=t.format(o);return n.render(s)},i=e.keys;(()=>{let e=document.getElementById(`input`),t=document.getElementById(`output`),n=document.getElementById(`key`),a=document.getElementById(`transpose_to`);[n,a].forEach(e=>{e.innerHTML=i.map(e=>`<option value="${e}">${e}</option>`).join(``)});let o=e=>{try{t.innerHTML=r(e,n.value,a.value)}catch(e){console.info(e)}},s=1,c=null;(t=>{s=1,c=setInterval(()=>{e.value=t.substring(0,s++),e.dispatchEvent(new Event(`keyup`)),s>t.length&&clearInterval(c)},20)})(`[Intro] [[: C:4,4,4,4 Dm | Em F | G Am Bdim :]]3
-[[ D:16,16,16 | r:1,2,4,8
-[Verse] F G | Am G/B | C6/9`),e.addEventListener(`keyup`,()=>{o(e.value)}),[n,a].forEach(t=>{t.addEventListener(`change`,()=>{o(e.value)})})})();
+    `}},r=(r,i,a)=>{let o=e.parse(r,i,a),s=t.format(o);return n.render(s)},i=e.keys;export{i as n,r as t};
